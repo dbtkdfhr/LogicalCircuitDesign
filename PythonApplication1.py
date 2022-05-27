@@ -69,7 +69,11 @@ def tableprint(table,minterm):
     print("\t",end='')
 
     for i in range(len(table[0])):
-        if(table[0][i] != '+'):
+        cnt = 0
+
+        for j in range(len(table)):
+            if(table[j][i] == '+'): cnt += 1
+        if(cnt < len(table)):
             print(minterm[i+2],end="\t")
 
     print()
@@ -179,7 +183,7 @@ def solution(minterm):
         c = ''
         for j in reversed(list(range(minterm[0]))):
             if(2**j <= i):
-                i -= 2**j;
+                i -= 2**j
                 c += '1'
             else:
                 c += '0'
